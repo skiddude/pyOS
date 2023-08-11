@@ -49,7 +49,7 @@ def get_meta_data(path):
         data = cur.fetchone()
         if data:
             ## force data to be strings and not unicode
-            data = tuple(str(x) if type(x) == unicode else x for x in data)
+            data = tuple(str(x) if type(x) == 'Py_UCS4' else x for x in data)
     return data
 
 def get_all_meta_data(path='/'):

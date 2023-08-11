@@ -58,7 +58,7 @@ class Pipe(object):
             pass  # self.reader()
         else:
             if any(self.value):
-                print "<%s> %s" % (self.name, '\n'.join(self.value[:-1])),
+                print("<%s> %s" % (self.name, '\n'.join(self.value[:-1]))),
 
     def __repr__(self):
         return "<Pipe(name=%s, value=%s, writer=%d, reader=%d)>" % (
