@@ -5,7 +5,7 @@ from kernel.system import System
 
 def run(shell, args):
     user = input("user: ")
-    password = hashlib.sha256(getpass.getpass("password: ").encode()).hexdigest()
+    #password = hashlib.sha256(getpass.getpass("password: ").encode()).hexdigest()
 
     #if shell.syscall.correct_password(user, password): # == db(user).password
     stuff = {
