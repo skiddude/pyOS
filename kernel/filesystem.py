@@ -1,7 +1,7 @@
 import os
 import shutil
-import imp
 import glob
+from importlib.util import spec_from_file_location, module_from_spec
 
 from kernel.constants import BASEPATH
 
@@ -60,7 +60,7 @@ def remove_dir(path):
     if list_dir(path) == []:
         shutil.rmtree(abs_path(path))
     else:
-        raise OSError
+        raise OSError("Directory not empty")
 
 def get_size(path):
     return os.path.getsize(abs_path(path))
@@ -91,11 +91,11 @@ def open_program(path):
     x = abs_path(path)
     if not is_dir(path):
         try:
-            program = imp.load_source('program', x)
+            spec = spec_from_file_location('program', str(x))
+            program = module_from_spec(spec)
+            spec.loader.exec_module(program)
         except IOError:
             program = False
     else:
         program = False
     return program
-
-
